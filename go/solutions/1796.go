@@ -1,4 +1,4 @@
-package leetcode
+package solutions
 
 // 1796. Second Largest Digit in a String
 
@@ -19,7 +19,7 @@ package leetcode
 // 1 <= s.length <= 500
 // s consists of only lowercase English letters and/or digits.
 
-func secondHighest(s string) int {
+func SecondHighest(s string) int {
 	if len(s) == 1 {
 		return -1
 	}
