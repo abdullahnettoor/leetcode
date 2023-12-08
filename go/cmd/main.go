@@ -7,6 +7,6 @@ import (
 )
 
 func main() {
-	str := solutions.LongestCommonPrefix([]string{"flower", "flower", "flight"})
-	fmt.Println("Solution is", str)
+	sol := solutions.ContainsDuplicate([]int{1,1,1,3,3,4,3,2,4,2})
+	fmt.Println("Solution is", sol)
 }
