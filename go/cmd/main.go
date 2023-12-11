@@ -7,6 +7,6 @@ import (
 )
 
 func main() {
-	sol := solutions.IsAnagram("ajbcd", "dcjba")
+	sol := solutions.IsPalindrome("A man, a plan, a canal: Panama")
 	fmt.Println("Solution is", sol)
 }
