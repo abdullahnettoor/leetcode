@@ -7,6 +7,5 @@ import (
 )
 
 func main() {
-	sol := solutions.IsPalindrome("A man, a plan, a canal: Panama")
-	fmt.Println("Solution is", sol)
+	fmt.Println("Output of 1464:", solutions.Output1464())
 }
