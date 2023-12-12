@@ -1,5 +1,7 @@
 package solutions
 
+import "sort"
+
 /* Question **********************************
 1464. Maximum Product of Two Elements in an Array
 Easy
@@ -28,23 +30,24 @@ Constraints:
 1 <= nums[i] <= 10^3
 *********************************************/
 
+// * Solution 1
 func maxProduct(nums []int) int {
-	var l1, l2 int
-	for i := range nums {
-		if nums[i] >= l1 {
-			l2 = l1
-			l1 = nums[i]
-		} else if nums[i] >= l2 {
-			l2 = nums[i]
-		}
-	}
-	return (l2 - 1) * (l1 - 1)
+	sort.Ints(nums)
+	return (nums[len(nums)-1] - 1) * (nums[len(nums)-2] - 1)
 }
 
-// func MaxProduct(nums []int) int {
-// 	size := len(nums)
-// 	sort.Ints(nums)
-// 	return (nums[size-1] - 1) * (nums[size-2] - 1)
+// * Solution 2
+// func maxProduct(nums []int) int {
+// 	var l1, l2 int
+// 	for i := range nums {
+// 		if nums[i] >= l1 {
+// 			l2 = l1
+// 			l1 = nums[i]
+// 		} else if nums[i] >= l2 {
+// 			l2 = nums[i]
+// 		}
+// 	}
+// 	return (l2 - 1) * (l1 - 1)
 // }
 
 func Output1464() any {
