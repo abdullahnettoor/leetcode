@@ -39,16 +39,33 @@ func Output1436() any {
 		{"Lima", "Sao Paulo"}})
 }
 
-func destCity(paths [][]string) string {
-	m := make(map[string]string)
+// * Solution 1
+// func destCity(paths [][]string) string {
+// 	m := make(map[string]string)
 
-	for i := range paths {
-		m[paths[i][0]] = paths[i][1]
+// 	for i := range paths {
+// 		m[paths[i][0]] = paths[i][1]
+// 	}
+
+// 	for _, v := range m {
+// 		if _, found := m[v]; !found {
+// 			return v
+// 		}
+// 	}
+// 	return ""
+// }
+
+// * Solution 2
+func destCity(paths [][]string) string {
+	m := map[string]bool{}
+
+	for _, v := range paths {
+		m[v[0]] = true
 	}
 
-	for _, v := range m {
-		if _, found := m[v]; !found {
-			return v
+	for _, v := range paths {
+		if !m[v[1]] {
+			return v[1]
 		}
 	}
 	return ""
