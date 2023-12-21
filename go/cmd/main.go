@@ -7,5 +7,5 @@ import (
 )
 
 func main() {
-	fmt.Println("Output of 2706:", solutions.Output2706())
+	fmt.Println("Output of 905:", solutions.Output905())
 }
