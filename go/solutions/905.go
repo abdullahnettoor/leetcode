@@ -39,25 +39,3 @@ func sortArrayByParity(nums []int) []int {
 	return arr
 }
 
-// * Solution 2
-// func reverseWords(s string) string {
-// 	var tmp int
-// 	length := len(s) - 1
-// 	for i := 0; i <= length; i++ {
-// 		if s[i] == ' ' || i == length {
-// 			for j := i; j >= tmp; j-- {
-// 				if s[j] != ' ' {
-// 					s += string(s[j])
-// 				}
-// 				if i != length && j == tmp {
-// 					s += " "
-// 				}
-// 				fmt.Println("Tmp is", tmp)
-// 				fmt.Println("J is", j)
-// 			}
-// 			tmp = i
-// 		}
-// 	}
-// 	fmt.Println("Res is", s[length+1:])
-// 	return s[length+1:]
-// }
