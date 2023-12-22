@@ -24,21 +24,39 @@ n == nums.length
 1 <= n <= 104
 0 <= nums[i] <= n
 All the numbers of nums are unique.
- 
+
 Follow up: Could you implement a solution using only O(1) extra space complexity and O(n) runtime complexity?
 *********************************************/
 
 func Output268() any {
-	return missingNumber([]int{9,6,4,2,3,5,7,0,1})
+	return missingNumber([]int{9, 6, 4, 2, 3, 5, 7, 0, 1})
 }
 
 // * Solution 1
 func missingNumber(nums []int) int {
-    expected:= 0
-    real:= 0
-    for i := range nums {
-        expected += i+1
-        real += nums[i]
-    }
-    return expected - real
+	expected := 0
+	real := 0
+	for i := range nums {
+		expected += i + 1
+		real += nums[i]
+	}
+	return expected - real
 }
+
+// * Solution 2
+// func missingNumber(nums []int) int {
+//     sort.Ints(nums)
+//     if nums[0]== 1{
+//         return 0
+//     }
+//     if nums[len(nums)-1] != len(nums) {
+//         return len(nums)
+//     }
+//     for i := range nums {
+//         if i == nums[i] || i == 0 {
+//            continue
+//         }
+//         return nums[i]-1
+//     }
+//     return 0
+// }
