@@ -57,7 +57,7 @@ func differenceOfSum(nums []int) int {
 // 		eSum += nums[i]
 // 		dSum += digitSum(nums[i])
 // 	}
-// 	return int(math.Abs(float64(eSum - dSum)))
+// 	return eSum - dSum
 // }
 
 // func digitSum(n int) int {
