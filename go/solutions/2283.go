@@ -33,7 +33,7 @@ num consists of digits.
 *********************************************/
 
 func Output2283() any {
-	return divisorSubstrings(240, 2)
+	return digitCount("1210")
 }
 
 // * Solution 1
@@ -44,7 +44,7 @@ func digitCount(num string) bool {
 	}
 	for k, _ := range m {
 		for i := range num {
-			if int(num[i] - '1' + 1) == k {
+			if int(num[i]-'1'+1) == k {
 				m[k]--
 			}
 		}
