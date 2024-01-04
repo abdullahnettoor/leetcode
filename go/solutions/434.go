@@ -25,7 +25,7 @@ The only space character in s is ' '.
 ******************************************/
 
 func Output434() any {
-	return maxProfit([]int{7, 1, 5, 3, 6, 4})
+	return countSegments("Hello, my name is John")
 }
 
 // * Solution 1
