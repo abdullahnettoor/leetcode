@@ -40,11 +40,11 @@ func Output450() any {
 	return deleteNode(root, 1)
 }
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
+// type TreeNode struct {
+// 	Val   int
+// 	Left  *TreeNode
+// 	Right *TreeNode
+// }
 
 // * Solution 1
 func deleteNode(root *TreeNode, key int) *TreeNode {

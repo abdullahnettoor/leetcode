@@ -30,11 +30,11 @@ func Output94() any {
 	return inorderTraversal(root)
 }
 
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
-}
+// type TreeNode struct {
+// 	Val   int
+// 	Left  *TreeNode
+// 	Right *TreeNode
+// }
 
 // * Solution 1 Using Recursion
 func inorderTraversal(root *TreeNode) []int {
