@@ -5,3 +5,8 @@ type TreeNode struct {
 	Left  *TreeNode
 	Right *TreeNode
 }
+
+type Trie struct {
+	children [26]*Trie
+	isEnd    bool
+}
