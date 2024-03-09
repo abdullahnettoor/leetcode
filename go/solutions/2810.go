@@ -51,7 +51,7 @@ func finalString(s string) string {
 	res := ""
 	for _, r := range s {
 		if r == 'i' {
-			res = reverse(res)
+			res = reverseStr(res)
 		} else {
 			res += string(r)
 		}
@@ -59,7 +59,7 @@ func finalString(s string) string {
 	return res
 }
 
-func reverse(str string) (result string) {
+func reverseStr(str string) (result string) {
 	for _, v := range str {
 		result = string(v) + result
 	}
