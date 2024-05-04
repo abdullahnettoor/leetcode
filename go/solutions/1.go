@@ -32,16 +32,33 @@ func Output1() any {
 	return twoSum([]int{9, 9, 2}, 18)
 }
 
-// * Solution 1 - Brute force - O(n2)
+// * Solution 1 - Using HashMap - O(n)
 func twoSum(nums []int, target int) []int {
-   
-    for i := 0 ; i < len(nums)-1; i++ {
-        for j := i+1; j < len(nums); j++ {
-            if nums[i] + nums[j] == target {
-                return []int{i, j}
-            }
-        }
+    if len(nums) == 2 {
+        return []int{0,1}
     }
-    return nil
+    h := make(map[int]int, len(nums))
+    for i, num := range nums {
+        t := target - num
+        if _, ok := h[t]; ok {
+            return []int{h[t], i}
+        }
+        h[num] = i
+    }
+
+    return []int{}
 }
+
+// * Solution 2 - Brute force - O(n2)
+// func twoSum(nums []int, target int) []int {
+   
+//     for i := 0 ; i < len(nums)-1; i++ {
+//         for j := i+1; j < len(nums); j++ {
+//             if nums[i] + nums[j] == target {
+//                 return []int{i, j}
+//             }
+//         }
+//     }
+//     return nil
+// }
 
