@@ -30,47 +30,30 @@ func Output20() any {
 	return isValid("[])")
 }
 
+// * Solution 1 -- Using Stack
 func isValid(s string) bool {
-	length := len(s)
-	if length < 2 {
-		return false
-	}
-	if s[0] == ']' || s[0] == '}' || s[0] == ')' {
-		return false
-	}
-	if s[length-1] == '[' || s[length-1] == '{' || s[length-1] == '(' {
-		return false
-	}
-
 	chars := []rune{}
 	for i := range s {
-
 		switch rune(s[i]) {
 		case '(', '{', '[':
 			chars = append(chars, rune(s[i]))
-
 		case ')', '}', ']':
 			if len(chars) != 0 {
 				switch rune(s[i]) {
 				case ')':
-					if chars[len(chars)-1] == '(' {
-						chars = chars[:len(chars)-1]
-					} else {
+					if chars[len(chars)-1] != '(' {
 						return false
 					}
 				case '}':
-					if chars[len(chars)-1] == '{' {
-						chars = chars[:len(chars)-1]
-					} else {
+					if chars[len(chars)-1] != '{' {
 						return false
 					}
 				case ']':
-					if chars[len(chars)-1] == '[' {
-						chars = chars[:len(chars)-1]
-					} else {
+					if chars[len(chars)-1] != '[' {
 						return false
 					}
 				}
+				chars = chars[:len(chars)-1]
 			} else {
 				return false
 			}
@@ -78,3 +61,53 @@ func isValid(s string) bool {
 	}
 	return len(chars) == 0
 }
+
+// * Solution 2 -- Old Solution
+// func isValid(s string) bool {
+// 	length := len(s)
+// 	if length < 2 {
+// 		return false
+// 	}
+// 	if s[0] == ']' || s[0] == '}' || s[0] == ')' {
+// 		return false
+// 	}
+// 	if s[length-1] == '[' || s[length-1] == '{' || s[length-1] == '(' {
+// 		return false
+// 	}
+
+// 	chars := []rune{}
+// 	for i := range s {
+
+// 		switch rune(s[i]) {
+// 		case '(', '{', '[':
+// 			chars = append(chars, rune(s[i]))
+
+// 		case ')', '}', ']':
+// 			if len(chars) != 0 {
+// 				switch rune(s[i]) {
+// 				case ')':
+// 					if chars[len(chars)-1] == '(' {
+// 						chars = chars[:len(chars)-1]
+// 					} else {
+// 						return false
+// 					}
+// 				case '}':
+// 					if chars[len(chars)-1] == '{' {
+// 						chars = chars[:len(chars)-1]
+// 					} else {
+// 						return false
+// 					}
+// 				case ']':
+// 					if chars[len(chars)-1] == '[' {
+// 						chars = chars[:len(chars)-1]
+// 					} else {
+// 						return false
+// 					}
+// 				}
+// 			} else {
+// 				return false
+// 			}
+// 		}
+// 	}
+// 	return len(chars) == 0
+// }
