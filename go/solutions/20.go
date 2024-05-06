@@ -30,39 +30,61 @@ func Output20() any {
 	return isValid("[])")
 }
 
-// * Solution 1 -- Using Stack
+// * Solution 1 -- Using Stack & hashmap
 func isValid(s string) bool {
-	chars := []rune{}
-	for i := range s {
-		switch rune(s[i]) {
-		case '(', '{', '[':
-			chars = append(chars, rune(s[i]))
-		case ')', '}', ']':
-			if len(chars) != 0 {
-				switch rune(s[i]) {
-				case ')':
-					if chars[len(chars)-1] != '(' {
-						return false
-					}
-				case '}':
-					if chars[len(chars)-1] != '{' {
-						return false
-					}
-				case ']':
-					if chars[len(chars)-1] != '[' {
-						return false
-					}
-				}
-				chars = chars[:len(chars)-1]
-			} else {
-				return false
-			}
-		}
-	}
-	return len(chars) == 0
+    stack := []rune{}
+    matchingBracket := map[rune]rune{
+        ')': '(',
+        '}': '{',
+        ']': '[',
+    }
+
+    for _, char := range s {
+        if char == '(' || char == '{' || char == '[' {
+            stack = append(stack, char)
+        } else if char == ')' || char == '}' || char == ']' {
+            if len(stack) == 0 || stack[len(stack)-1] != matchingBracket[char] {
+                return false
+            }
+            stack = stack[:len(stack)-1]
+        }
+    }
+    return len(stack) == 0
 }
 
-// * Solution 2 -- Old Solution
+// * Solution 2 -- Using Stack
+// func isValid(s string) bool {
+// 	chars := []rune{}
+// 	for i := range s {
+// 		switch rune(s[i]) {
+// 		case '(', '{', '[':
+// 			chars = append(chars, rune(s[i]))
+// 		case ')', '}', ']':
+// 			if len(chars) != 0 {
+// 				switch rune(s[i]) {
+// 				case ')':
+// 					if chars[len(chars)-1] != '(' {
+// 						return false
+// 					}
+// 				case '}':
+// 					if chars[len(chars)-1] != '{' {
+// 						return false
+// 					}
+// 				case ']':
+// 					if chars[len(chars)-1] != '[' {
+// 						return false
+// 					}
+// 				}
+// 				chars = chars[:len(chars)-1]
+// 			} else {
+// 				return false
+// 			}
+// 		}
+// 	}
+// 	return len(chars) == 0
+// }
+
+// * Solution 3 -- Old Solution
 // func isValid(s string) bool {
 // 	length := len(s)
 // 	if length < 2 {
