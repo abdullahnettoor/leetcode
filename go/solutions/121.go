@@ -47,3 +47,15 @@ func maxProfit(prices []int) int {
 
 	return profit
 }
+
+// * Solution 2 -- Using Nested Loop -- Brute Force -- O(n^2)
+// func maxProfit(prices []int) int {
+//     var profit int
+//     for i := 0; i < len(prices)-1; i++{
+//         for j := i+1; j < len(prices); j++ {
+//             profit = max(profit, prices[j] - prices[i])
+//         }
+//     }
+
+//     return profit
+// }
