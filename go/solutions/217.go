@@ -37,15 +37,15 @@ func containsDuplicate(nums []int) bool {
     return false
 }
 
-// * Solution 2 - Using 2 loops
+// * Solution 2 -- Using Nested Loop -- Brute Force -- Time O(n^2) - Space O(1)
 // func containsDuplicate(nums []int) bool {
-// 	for i := range nums {
-// 		length := len(nums) - 1
-// 		for length != i {
-// 			if nums[i] == nums[length] {
+// 	for left := range nums {
+// 		right := len(nums)-1
+// 		for left != right {
+// 			if nums[left] == nums[right]{
 // 				return true
 // 			}
-// 			length -= 1
+// 			right--
 // 		}
 // 	}
 // 	return false
