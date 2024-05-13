@@ -37,7 +37,21 @@ func containsDuplicate(nums []int) bool {
     return false
 }
 
-// * Solution 2 -- Using Nested Loop -- Brute Force -- Time O(n^2) - Space O(1)
+// * Solution 2 -- Using Two Pointers -- Sliding Window -- Time O(nlogn) - Space O(1)
+// func containsDuplicate(nums []int) bool {
+//     sort.Ints(nums)
+//     ptr1, ptr2 := 0, 1
+//     for ptr2 < len(nums) {
+//         if nums[ptr1] == nums[ptr2] {
+//             return true
+//         }
+//         ptr1++
+//         ptr2++
+//     }
+//     return false
+// }
+
+// * Solution 3 -- Using Nested Loop -- Brute Force -- Time O(n^2) - Space O(1)
 // func containsDuplicate(nums []int) bool {
 // 	for left := range nums {
 // 		right := len(nums)-1
