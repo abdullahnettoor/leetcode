@@ -34,11 +34,11 @@ func Output226() any {
 // 	Right *TreeNode
 // }
 
-// * Solution 1
+// * Solution 1 -- Recursion -- DFS -- Space & Time O(n)
 func invertTree(root *TreeNode) *TreeNode {
-	if root == nil {
-		return nil
+	if root != nil {
+		root.Left, root.Right = invertTree(root.Right), invertTree(root.Left)
 	}
-	root.Left, root.Right = invertTree(root.Right), invertTree(root.Left)
 	return root
 }
+
