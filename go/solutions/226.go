@@ -42,23 +42,22 @@ func invertTree(root *TreeNode) *TreeNode {
 	return root
 }
 
-// * Solution 2 -- Recursion -- DFS -- Space & Time O(n)
+// * Solution 2 -- Loop -- DFS -- Space & Time O(n)
 // func invertTree(root *TreeNode) *TreeNode {
-//     if root == nil {
-// 		return root
-// 	}
-// 	queue := make([]*TreeNode, 0)
-// 	queue = append(queue, root)
-// 	for len(queue) != 0 {
-// 		peekNode := queue[0]
-// 		if peekNode.Left != nil {
-// 			queue = append(queue, peekNode.Left)
+// 	if root != nil {
+// 		queue := make([]*TreeNode, 0)
+// 		queue = append(queue, root)
+// 		for len(queue) != 0 {
+// 			peekNode := queue[0]
+// 			if peekNode.Left != nil {
+// 				queue = append(queue, peekNode.Left)
+// 			}
+// 			if peekNode.Right != nil {
+// 				queue = append(queue, peekNode.Right)
+// 			}
+// 			peekNode.Left, peekNode.Right = peekNode.Right, peekNode.Left
+// 			queue = queue[1:]
 // 		}
-// 		if peekNode.Right != nil {
-// 			queue = append(queue, peekNode.Right)
-// 		}
-// 		peekNode.Left, peekNode.Right = peekNode.Right, peekNode.Left
-//         queue = queue[1:]
 // 	}
 // 	return root
 // }
