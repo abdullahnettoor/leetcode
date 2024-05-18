@@ -32,18 +32,34 @@ func Output108() any {
 // 	Right *TreeNode
 // }
 
-// * Solution 1 -- Recursion -- Using helper function -- Time & Space O(n)
+// * Solution 1 -- Divide & Conquer -- Recursion Using Single Function -- Time & Space O(n)
 func sortedArrayToBST(nums []int) *TreeNode {
-	return sortedArrayToBSTHelper(0, len(nums)-1, nums)
+    n := len(nums)
+    if n < 1 {
+        return nil
+    }
+
+    mid := n/2
+
+    node := &TreeNode{Val:nums[mid]}
+    node.Left = sortedArrayToBST(nums[:mid])
+    node.Right = sortedArrayToBST(nums[mid+1:])
+
+    return node
 }
 
-func sortedArrayToBSTHelper(start, end int, nums []int) *TreeNode {
-	if start > end {
-		return nil
-	}
-	mid := (start + end) / 2
-	node := &TreeNode{Val: nums[mid]}
-	node.Left = sortedArrayToBSTHelper(start, mid-1, nums)
-	node.Right = sortedArrayToBSTHelper(mid+1, end, nums)
-	return node
-}
+// * Solution 2 -- Recursion -- Using helper function -- Time & Space O(n)
+// func sortedArrayToBST(nums []int) *TreeNode {
+// 	return sortedArrayToBSTHelper(0, len(nums)-1, nums)
+// }
+
+// func sortedArrayToBSTHelper(start, end int, nums []int) *TreeNode {
+// 	if start > end {
+// 		return nil
+// 	}
+// 	mid := (start + end) / 2
+// 	node := &TreeNode{Val: nums[mid]}
+// 	node.Left = sortedArrayToBSTHelper(start, mid-1, nums)
+// 	node.Right = sortedArrayToBSTHelper(mid+1, end, nums)
+// 	return node
+// }
