@@ -26,21 +26,38 @@ func Output704() any {
 	return search([]int{5, 10, 11, 14, 25, 30}, 10)
 }
 
-// * Solution -- Recursion -- Using helper function -- Time O(logn) -- Space O(n)
+// * Solution 1 -- Divide & Conquer -- Using Loop -- Time O(logn) - Space O(1)
 func search(nums []int, target int) int {
-    return searchHelper(0, len(nums)-1, target, nums)
+    start, end := 0, len(nums)-1
+    for start <= end {
+        mid := start + (end-start)/2
+        if nums[mid] == target {
+            return mid
+        } else if nums[mid] < target {
+            start = mid+1
+        } else {
+            end = mid-1
+        }
+    }
+    return -1
 }
 
-func searchHelper(start, end, target int, nums []int) int {
-    if start > end {
-        return -1
-    }
-    mid := (start + end)/ 2
-    if nums[mid] == target {
-        return mid
-    } else if nums[mid] > target {
-        return searchHelper(start, mid-1, target, nums)
-    } else {
-        return searchHelper(mid+1, end, target, nums)
-    }
-}
+
+// * Solution 2 -- Recursion -- Using helper function -- Time O(logn) -- Space O(n)
+// func search(nums []int, target int) int {
+//     return searchHelper(0, len(nums)-1, target, nums)
+// }
+
+// func searchHelper(start, end, target int, nums []int) int {
+//     if start > end {
+//         return -1
+//     }
+//     mid := (start + end)/ 2
+//     if nums[mid] == target {
+//         return mid
+//     } else if nums[mid] > target {
+//         return searchHelper(start, mid-1, target, nums)
+//     } else {
+//         return searchHelper(mid+1, end, target, nums)
+//     }
+// }
