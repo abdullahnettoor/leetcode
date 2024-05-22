@@ -32,24 +32,48 @@ func Output104() any {
 // 	Right *TreeNode
 // }
 
-// * Solution 1
+// * Solution 1 -- Recursion -- DFS -- Time & Space O(n)
 func maxDepth(root *TreeNode) int {
-	if root == nil {
-		return 0
-	}
-	left := maxDepth(root.Left) + 1
-	right := maxDepth(root.Right) + 1
-
-	if left > right {
-		return left
-	}
-	return right
+    if root == nil {
+        return 0
+    }
+    return 1 + max(maxDepth(root.Left), maxDepth(root.Right))
 }
+// func maxDepth(root *TreeNode) int {
+// 	if root == nil {
+// 		return 0
+// 	}
+// 	left := maxDepth(root.Left) + 1
+// 	right := maxDepth(root.Right) + 1
+// 
+// 	if left > right {
+// 		return left
+// 	}
+// 	return right
+// }
 
-// * Solution 2
+// * Solution 2 -- Nested Loop -- BFS -- Time & Space O(n)
 // func maxDepth(root *TreeNode) int {
 //     if root == nil {
 //         return 0
 //     }
-//     return 1 + max(maxDepth(root.Left), maxDepth(root.Right))
+//     queue := []*TreeNode{root}
+//     depth := 0
+//     for len(queue) != 0 {
+//         n := len(queue)
+//         for n != 0 {
+//             tmp := queue[0]
+//             if tmp.Left != nil {
+//                 queue = append(queue, tmp.Left)
+//             } 
+//             if tmp.Right != nil {
+//                 queue = append(queue, tmp.Right)
+//             } 
+//             queue = queue[1:]
+//             n--
+//         }
+//         depth++
+//     }
+//     return depth
 // }
+
