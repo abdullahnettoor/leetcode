@@ -25,18 +25,27 @@ func Output136() any {
 	return singleNumber([]int{3, 4, 3, 4, 5})
 }
 
-// * Solution -- Hashmap -- Time & Space O(n)
+// * Solution -- Using Bitwise XOR Operator -- Time O(n) - Space O(1)
 func singleNumber(nums []int) int {
-	foundNTimes := make(map[int]int)
-	for _, num := range nums {
-		foundNTimes[num]++
-	}
-	var res int
-	for k, v := range foundNTimes {
-		if v == 1 {
-			res = k
-			break
-		}
-	}
-	return res
+    var res int
+    for _, num := range nums {
+        res = res ^ num
+    }
+    return res
 }
+
+// * Solution -- Hashmap -- Time & Space O(n)
+// func singleNumber(nums []int) int {
+// 	foundNTimes := make(map[int]int)
+// 	for _, num := range nums {
+// 		foundNTimes[num]++
+// 	}
+// 	var res int
+// 	for k, v := range foundNTimes {
+// 		if v == 1 {
+// 			res = k
+// 			break
+// 		}
+// 	}
+// 	return res
+// }
