@@ -49,3 +49,23 @@ func singleNumber(nums []int) int {
 // 	}
 // 	return res
 // }
+
+// * Solution -- Sorting -- Time O(n log n) - Space O(1)
+// func singleNumber(nums []int) int {
+//     if len(nums) == 1 {
+//         return nums[0]
+//     }
+//     sort.Ints(nums)
+//     ptr1, ptr2 := 0, 1 
+//     fmt.Println(nums)
+//     for ptr2 < len(nums) {
+//         if nums[ptr1] != nums[ptr2]{
+//             break
+//         }
+//         ptr1 += 2
+//         ptr2 += 2
+//     }
+//     return nums[ptr1]
+// }
+
+
