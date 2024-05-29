@@ -44,3 +44,18 @@ func middleNode(head *ListNode) *ListNode {
     return slow
 }
 
+// * Solution -- Recursion -- Time & Space O(n/2)
+// func middleNode(head *ListNode) *ListNode {
+//     return middleNodeHelper(head.Next, head)
+// }
+
+// func middleNodeHelper(fast, slow *ListNode) *ListNode {
+//     if fast == nil {d
+//         return slow
+//     } 
+//     if fast.Next == nil {
+//         return slow.Next
+//     }
+//     return middleNodeHelper(fast.Next.Next, slow.Next)
+// }
+
