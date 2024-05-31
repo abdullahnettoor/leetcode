@@ -42,3 +42,18 @@ func maxSubArray(nums []int) int {
 	}
 	return maxSum
 }
+
+// * Solution -- Brute Force - 3 Loops -- Time O(n^3) - Space O(1)
+// func maxSubArray(nums []int) int {
+//     maxSum := nums[0]
+//     for i := range nums {
+//       for j := i; j < len(nums); j++ {
+//         sum := 0
+//         for k := i; k <= j; k++ {
+//             sum += nums[k]
+//             maxSum = max(sum, maxSum)
+//         }
+//       }
+//     }
+//     return maxSum
+// }
