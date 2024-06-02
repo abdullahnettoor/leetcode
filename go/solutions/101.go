@@ -32,17 +32,18 @@ func Output101() any {
 // 	Right *TreeNode
 // }
 
-// * Solution 1
+// * Solution 1 -- Recursion -- Time & Space O(n)
 func isSymmetric(root *TreeNode) bool {
-	return isSame(root.Left, root.Right)
+    return isSymmetricHelper(root.Left, root.Right)
 }
 
-func isSame(n1, n2 *TreeNode) bool {
-	if n1 == nil && n2 == nil {
-		return true
-	}
-	if n1 == nil || n2 == nil {
-		return false
-	}
-	return n1.Val == n2.Val && isSame(n1.Right, n2.Left) && isSame(n2.Right, n1.Left)
+func isSymmetricHelper(n1, n2 *TreeNode) bool {
+    if n1 == nil && n2 == nil {
+        return true
+    }
+    if n1 == nil || n2 == nil {
+        return false
+    }
+    return n1.Val == n2.Val && isSymmetricHelper(n1.Left, n2.Right) && isSymmetricHelper(n2.Left, n1.Right)
 }
+
