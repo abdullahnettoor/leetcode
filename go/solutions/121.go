@@ -28,27 +28,22 @@ func Output121() any {
 	return maxProfit([]int{7, 1, 5, 3, 6, 4})
 }
 
-// * Solution 1 -- Using Two Pointers -- Sliding Window -- O(n)
+// * Solution -- Using Two Pointers -- Greedy -- Time O(n) - Space O(1)
 func maxProfit(prices []int) int {
-	var lowest, highest = 10000, 0
-	days := len(prices)
-	var profit, k = 0, 0
-	for i := range prices {
-		if lowest > prices[i] {
-			lowest = prices[i]
+	l, r := 0, 1
+	var profit int
+	for r < len(prices) {
+		if prices[l] < prices[r] {
+			profit = max(profit, prices[r]-prices[l])
+		} else {
+			l = r
 		}
-		if highest < prices[i] {
-			highest = prices[i]
-		}
-		if k == days-1 {
-			k = i + 1
-		}
+		r++
 	}
-
 	return profit
 }
 
-// * Solution 2 -- Using Nested Loop -- Brute Force -- O(n^2)
+// * Solution -- Iterative - 2 Loops -- Brute Force -- Time O(n^2) - Space O(1)
 // func maxProfit(prices []int) int {
 //     var profit int
 //     for i := 0; i < len(prices)-1; i++{
@@ -56,6 +51,5 @@ func maxProfit(prices []int) int {
 //             profit = max(profit, prices[j] - prices[i])
 //         }
 //     }
-
 //     return profit
 // }
