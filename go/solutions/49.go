@@ -30,7 +30,7 @@ func Output49() any {
 	return groupAnagrams([]string{"eat", "tea", "tan", "ate", "nat", "bat"})
 }
 
-// * Solution - Brute Force - Time O(n×mlogm) - Space O(mlogm)
+// * Solution - Hashing & Sorting - Time O(n×mlogm) - Space O(n×m)
 func groupAnagrams(strs []string) [][]string {
 	anagramMap := make(map[string][]string)
 	for _, w := range strs {
