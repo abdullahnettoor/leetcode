@@ -43,3 +43,29 @@ func maxProfit122(prices []int) int {
     }
     return profit
 }
+
+// * Solution -- Using Single Variable -- Greedy -- Time O(n) - Space O(1)
+// func maxProfit(prices []int) int {
+//     profit := 0
+//     min := prices[0]
+//     for _, price := range prices {
+//         if min > price {
+//             min = price
+//         } else {
+//             profit = max(profit, price - min)
+//         }
+//     }
+//     return profit
+// }
+
+
+// * Solution -- Iterative - 2 Loops -- Brute Force -- Time O(n^2) - Space O(1)
+// func maxProfit(prices []int) int {
+//     var profit int
+//     for i := 0; i < len(prices)-1; i++{
+//         for j := i+1; j < len(prices); j++ {
+//             profit = max(profit, prices[j] - prices[i])
+//         }
+//     }
+//     return profit
+// }
