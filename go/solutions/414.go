@@ -1,6 +1,8 @@
 package solutions
 
-import "sort"
+import (
+	"math"
+)
 
 /* Question *******************************
 392. Is Subsequence
@@ -23,23 +25,47 @@ s and t consist only of lowercase English letters.
 ******************************************/
 
 func Output414() any {
-	return thirdMax([]int{3,7,5,2,9,7,6,7})
+	return thirdMax([]int{3, 7, 5, 2, 9, 7, 6, 7})
+}
+
+// * Solution -- Linear Scan -- Time O(n) - Space O(1)
+func thirdMax(nums []int) int {
+	m1, m2, m3 := math.MinInt64, math.MinInt64, math.MinInt64
+	for i := range nums {
+		switch nums[i] {
+		case m1, m2, m3:
+			continue
+		}
+		switch {
+		case nums[i] > m1:
+			m3, m2, m1 = m2, m1, nums[i]
+		case nums[i] > m2:
+			m3, m2 = m2, nums[i]
+		case nums[i] > m3:
+			m3 = nums[i]
+		}
+	}
+
+	if m3 == math.MinInt64 {
+		return m1
+	}
+	return m3
 }
 
 // * Solution -- Sorting -- Time O(nlogn) - Space O(logn)
-func thirdMax(nums []int) int {
-	sort.Ints(nums)
-	res := []int{nums[len(nums)-1]}
-	for i := len(nums) - 2; i >= 0; i-- {
-		if nums[i] == res[len(res)-1] {
-			continue
-		}
-		res = append(res, nums[i])
-	}
-	switch len(res) {
-	case 1, 2:
-		return res[0]
-	default:
-		return res[2]
-	}
-}
+// func thirdMax(nums []int) int {
+// 	sort.Ints(nums)
+// 	res := []int{nums[len(nums)-1]}
+// 	for i := len(nums) - 2; i >= 0; i-- {
+// 		if nums[i] == res[len(res)-1] {
+// 			continue
+// 		}
+// 		res = append(res, nums[i])
+// 	}
+// 	switch len(res) {
+// 	case 1, 2:
+// 		return res[0]
+// 	default:
+// 		return res[2]
+// 	}
+// }
