@@ -27,19 +27,36 @@ func Output11() any {
 	return maxArea([]int{1, 3, 5, 4, 0, 1, 10})
 }
 
-// * Solution -- Brute Force -- Time O(n^2) -- Space O(1)
+// * Solution -- Two Pointers -- Time O(n) -- Space O(1)
 func maxArea(height []int) int {
-	var mostWater int
-	start, end := 0, len(height)-1
-	for start < end {
-		for end > start {
-			w := end - start
-			h := min(height[start], height[end])
-			mostWater = max(mostWater, w*h)
-			end--
-		}
-		end = len(height) - 1
-		start++
-	}
-	return mostWater
+    var mostWater int
+    start, end := 0, len(height)-1
+    for start < end {
+        w := end - start
+        h := min(height[start], height[end])
+        mostWater = max(mostWater, w * h)
+        if height[start] < height[end] {
+            start++
+        } else {
+            end--
+        }
+    }
+    return mostWater
 }
+
+// * Solution -- Brute Force -- Time O(n^2) -- Space O(1)
+// func maxArea(height []int) int {
+// 	var mostWater int
+// 	start, end := 0, len(height)-1
+// 	for start < end {
+// 		for end > start {
+// 			w := end - start
+// 			h := min(height[start], height[end])
+// 			mostWater = max(mostWater, w*h)
+// 			end--
+// 		}
+// 		end = len(height) - 1
+// 		start++
+// 	}
+// 	return mostWater
+// }
