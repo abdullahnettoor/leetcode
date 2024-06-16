@@ -46,6 +46,18 @@ func maxArea(height []int) int {
 
 // * Solution -- Brute Force -- Time O(n^2) -- Space O(1)
 // func maxArea(height []int) int {
+//     var mostWater int
+//     for i := 0; i < len(height)-1; i++ {
+//         for j := len(height)-1; j > i; j-- {
+//             h := min(height[i], height[j])
+//             w := j - i
+//             mostWater = max(mostWater, h * w)
+//         }
+//     }
+//     return mostWater
+// }
+
+// func maxArea(height []int) int {
 // 	var mostWater int
 // 	start, end := 0, len(height)-1
 // 	for start < end {
