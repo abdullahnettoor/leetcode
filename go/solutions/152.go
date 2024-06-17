@@ -26,15 +26,28 @@ func Output152() any {
 	return maxProductInSubarray([]int{1,2,-3,4-20,9,4,0})
 }
 
-// * Solution -- Brute Force - 2 Loops -- Time O(n^2) - Space O(1)
+// * Solution -- Kadane's Algorithm -- Time O(n) - Space O(1)
 func maxProductInSubarray(nums []int) int {
-    product := nums[0]
-    for i := range nums {
-        currProduct := 1
-        for j := i; j < len(nums); j++ {
-            currProduct *= nums[j]
-            product = max(product, currProduct)
-        }
+	product := nums[0]
+    currMin, currMax := 1, 1
+    for _, num := range nums {
+		temp := currMax*num
+        currMin = min(temp, currMin*num, num)
+        currMax = max(temp, currMin*num, num)
+        product = max(product, currMax)
     }
     return product
 }
+
+// * Solution -- Brute Force - 2 Loops -- Time O(n^2) - Space O(1)
+// func maxProductInSubarray(nums []int) int {
+//     product := nums[0]
+//     for i := range nums {
+//         currProduct := 1
+//         for j := i; j < len(nums); j++ {
+//             currProduct *= nums[j]
+//             product = max(product, currProduct)
+//         }
+//     }
+//     return product
+// }
