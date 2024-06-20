@@ -39,38 +39,71 @@ func Output200() any {
 	})
 }
 
-// * Solution -- BFS -- Time O(m*n) - Space O(m*n)
+// * Solution -- DFS -- Time O(m*n) - Space O(1)
 func numIslands(grid [][]byte) int {
-	visited := make(map[[2]int]bool)
+	if len(grid) == 0 {
+		return 0
+	}
+
+	rows, cols := len(grid), len(grid[0])
 	islands := 0
-	rows := len(grid)
-	cols := len(grid[0])
 
-	for r := range grid {
-		for c := range grid[r] {
-			pos := [2]int{r, c}
-			if grid[r][c] == '1' && !visited[pos] {
-				visited[pos] = true
-				bfs := [][2]int{}
-				bfs = append(bfs, pos)
+	var dfs func(r, c int)
+	dfs = func(r, c int) {
+		if r < 0 || c < 0 || r >= rows || c >= cols || grid[r][c] != '1' {
+			return
+		}
+		grid[r][c] = '-'
+		dfs(r-1, c)
+		dfs(r+1, c)
+		dfs(r, c-1)
+		dfs(r, c+1)
+	}
+
+	for r := 0; r < rows; r++ {
+		for c := 0; c < cols; c++ {
+			if grid[r][c] == '1' {
 				islands++
-				for len(bfs) > 0 {
-					curr := bfs[0]
-					bfs = bfs[1:]
-					for _, d := range [][]int{{-1, 0}, {1, 0}, {0, -1}, {0, 1}} {
-						r, c := d[0]+curr[0], d[1]+curr[1]
-						pos := [2]int{r, c}
-						if r >= 0 && r < rows && c >= 0 && c < cols &&
-							grid[r][c] == '1' &&
-							!visited[pos] {
-							bfs = append(bfs, pos)
-							visited[pos] = true
-						}
-					}
-
-				}
+				dfs(r, c)
 			}
 		}
 	}
+
 	return islands
 }
+
+// * Solution -- BFS -- Time O(m*n) - Space O(m*n)
+// func numIslands(grid [][]byte) int {
+// 	visited := make(map[[2]int]bool)
+// 	islands := 0
+// 	rows := len(grid)
+// 	cols := len(grid[0])
+
+// 	for r := range grid {
+// 		for c := range grid[r] {
+// 			pos := [2]int{r, c}
+// 			if grid[r][c] == '1' && !visited[pos] {
+// 				visited[pos] = true
+// 				bfs := [][2]int{}
+// 				bfs = append(bfs, pos)
+// 				islands++
+// 				for len(bfs) > 0 {
+// 					curr := bfs[0]
+// 					bfs = bfs[1:]
+// 					for _, d := range [][]int{{-1, 0}, {1, 0}, {0, -1}, {0, 1}} {
+// 						r, c := d[0]+curr[0], d[1]+curr[1]
+// 						pos := [2]int{r, c}
+// 						if r >= 0 && r < rows && c >= 0 && c < cols &&
+// 							grid[r][c] == '1' &&
+// 							!visited[pos] {
+// 							bfs = append(bfs, pos)
+// 							visited[pos] = true
+// 						}
+// 					}
+
+// 				}
+// 			}
+// 		}
+// 	}
+// 	return islands
+// }
