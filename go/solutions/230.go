@@ -35,20 +35,44 @@ func Output230() any {
  * }
  */
 
-// * Solution -- DFS - Recursion -- Time O(n) - Space O(n)
+// * Solution -- DFS - Recursion -- Time O(n) - Space O(1)
 func kthSmallest(root *TreeNode, k int) int {
-	var inOrder func(node *TreeNode, arr []int) []int
-	inOrder = func(node *TreeNode, arr []int) []int {
+	var res, ctr int
+	var inOrder func(node *TreeNode)
+
+	inOrder = func(node *TreeNode) {
 		if node == nil {
-			return arr
+			return
 		}
-		arr = inOrder(node.Left, arr)
-		arr = append(arr, node.Val)
-		arr = inOrder(node.Right, arr)
-		return arr
+		inOrder(node.Left)
+		ctr++
+		if ctr == k {
+			res = node.Val
+			return
+		}
+		inOrder(node.Right)
+		return
 	}
 
-	arr := inOrder(root, []int{})
+	inOrder(root)
 
-	return arr[k-1]
+	return res
 }
+
+// * Solution -- DFS - Recursion -- Time O(n) - Space O(n)
+// func kthSmallest(root *TreeNode, k int) int {
+// 	var inOrder func(node *TreeNode, arr []int) []int
+// 	inOrder = func(node *TreeNode, arr []int) []int {
+// 		if node == nil {
+// 			return arr
+// 		}
+// 		arr = inOrder(node.Left, arr)
+// 		arr = append(arr, node.Val)
+// 		arr = inOrder(node.Right, arr)
+// 		return arr
+// 	}
+
+// 	arr := inOrder(root, []int{})
+
+// 	return arr[k-1]
+// }
