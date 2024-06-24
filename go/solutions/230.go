@@ -52,7 +52,6 @@ func kthSmallest(root *TreeNode, k int) int {
 			return
 		}
 		inOrder(node.Right)
-		return
 	}
 
 	inOrder(root)
@@ -95,6 +94,27 @@ func kthSmallest(root *TreeNode, k int) int {
 // 			}
 // 			curr = node.Right
 // 		}
+// 	}
+// 	return curr.Val
+// }
+
+// * Using Inner Loop to reach Last Left node
+// func kthSmallest(root *TreeNode, k int) int {
+// 	stack := []*TreeNode{}
+// 	curr := root
+// 	for curr != nil || len(stack) > 0 {
+// 		for curr != nil {
+// 			stack = append(stack, curr)
+// 			curr = curr.Left
+// 		}
+// 		node := stack[len(stack)-1]
+// 		stack = stack[:len(stack)-1]
+// 		k--
+// 		if k == 0 {
+// 			curr = node
+// 			break
+// 		}
+// 		curr = node.Right
 // 	}
 // 	return curr.Val
 // }
