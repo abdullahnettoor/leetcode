@@ -31,10 +31,21 @@ func Output509() any {
 	return fib(7)
 }
 
-// * Solution 1 - Using Recursion
+// * Solution -- Memoization & Recursion -- Time O(n) -- Space O(n)
+var f = map[int]int{0: 0, 1: 1}
+
 func fib(n int) int {
-	if n <= 1 {
-		return n
+	if v, ok := f[n]; ok {
+		return v
 	}
-	return fib(n-1) + fib(n-2)
+	f[n] = fib(n-1) + fib(n-2)
+	return f[n]
 }
+
+// * Solution -- Recursion -- Time O(2^n) -- Space O(n)
+// func fib(n int) int {
+// 	if n <= 1 {
+// 		return n
+// 	}
+// 	return fib(n-1) + fib(n-2)
+// }
