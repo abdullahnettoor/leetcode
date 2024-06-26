@@ -31,16 +31,29 @@ func Output509() any {
 	return fib(7)
 }
 
-// * Solution -- Memoization & Recursion -- Time O(n) -- Space O(n)
-var f = map[int]int{0: 0, 1: 1}
-
+// * Solution -- DP - Iterative Bottom-Up Approach -- Time O(n) -- Space O(1)
 func fib(n int) int {
-	if v, ok := f[n]; ok {
-		return v
+	if n <= 1 {
+		return n
 	}
-	f[n] = fib(n-1) + fib(n-2)
-	return f[n]
+	a, b := 0, 1
+	for n > 1 {
+		a, b = b, a+b
+		n--
+	}
+	return b
 }
+
+// * Solution -- Memoization & Recursion -- Time O(n) -- Space O(n)
+// var f = map[int]int{0: 0, 1: 1}
+
+// func fib(n int) int {
+// 	if v, ok := f[n]; ok {
+// 		return v
+// 	}
+// 	f[n] = fib(n-1) + fib(n-2)
+// 	return f[n]
+// }
 
 // * Solution -- Recursion -- Time O(2^n) -- Space O(n)
 // func fib(n int) int {
