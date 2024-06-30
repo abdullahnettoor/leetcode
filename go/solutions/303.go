@@ -44,20 +44,44 @@ func Output303() any {
  * param_1 := obj.SumRange(left,right);
  */
 
-// * Solution -- Brute Force -- Time O(r-l) -- Space O(1)
+// * Solution -- Prefix Sum -- Time O(1) -- Space O(1)
 type NumArray struct {
-	arr      []int
-	rangeSum int
+	arr []int
 }
 
 func Constructor(nums []int) NumArray {
-	return NumArray{arr: nums}
+	arr := make([]int, len(nums))
+	for i, v := range nums {
+		if i == 0 {
+			arr[i] = v
+			continue
+		}
+		arr[i] = nums[i] + arr[i-1]
+	}
+	return NumArray{arr}
 }
 
 func (this *NumArray) SumRange(left int, right int) int {
-	this.rangeSum = 0
-	for i := left; i <= right; i++ {
-		this.rangeSum += this.arr[i]
+	if left == 0 {
+		return this.arr[right]
 	}
-	return this.rangeSum
+	return this.arr[right] - this.arr[left-1]
 }
+
+// * Solution -- Brute Force -- Time O(r-l) -- Space O(1)
+// type NumArray struct {
+// 	arr      []int
+// 	rangeSum int
+// }
+
+// func Constructor(nums []int) NumArray {
+// 	return NumArray{arr: nums}
+// }
+
+// func (this *NumArray) SumRange(left int, right int) int {
+// 	this.rangeSum = 0
+// 	for i := left; i <= right; i++ {
+// 		this.rangeSum += this.arr[i]
+// 	}
+// 	return this.rangeSum
+// }
