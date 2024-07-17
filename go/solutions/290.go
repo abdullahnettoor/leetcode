@@ -74,3 +74,36 @@ func wordPattern(pattern string, s string) bool {
 	return true
 }
 
+// * Solution 2 -- Two Maps -- Time: O(n), Space: O(n)
+func wordPattern2(pattern string, s string) bool {
+	words := strings.Split(s, " ")
+	if len(pattern) != len(words) {
+		return false
+	}
+
+	patternToWord := make(map[byte]string)
+	wordToPattern := make(map[string]byte)
+
+	for i := 0; i < len(pattern); i++ {
+		p := pattern[i]
+		w := words[i]
+
+		if word, exists := patternToWord[p]; exists {
+			if word != w {
+				return false
+			}
+		} else {
+			patternToWord[p] = w
+		}
+
+		if pat, exists := wordToPattern[w]; exists {
+			if pat != p {
+				return false
+			}
+		} else {
+			wordToPattern[w] = p
+		}
+	}
+
+	return true
+}
