@@ -107,3 +107,33 @@ func wordPattern2(pattern string, s string) bool {
 
 	return true
 }
+
+
+// * Solution 3 -- Single Map with Index -- Time: O(n), Space: O(n)
+func wordPattern3(pattern string, s string) bool {
+	words := strings.Split(s, " ")
+	if len(pattern) != len(words) {
+		return false
+	}
+
+	indexMap := make(map[any]int)
+
+	for i := 0; i < len(pattern); i++ {
+		// Convert pattern char and word to interface{} to store in same map
+		p := any(pattern[i])
+		w := any(words[i])
+
+		// If first occurrence of either pattern or word,
+		// they should both be first occurrences
+		if indexMap[p] != indexMap[w] {
+			return false
+		}
+
+		// Store next index for both
+		indexMap[p] = i + 1
+		indexMap[w] = i + 1
+	}
+
+	return true
+}
+
