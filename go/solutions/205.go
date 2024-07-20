@@ -60,3 +60,22 @@ func isIsomorphic(s string, t string) bool {
 	return true
 }
 
+// * Solution 2 -- Two Maps with Byte -- Time: O(n), Space: O(n)
+func isIsomorphic2(s string, t string) bool {
+	if len(s) != len(t) {
+		return false
+	}
+
+	sMap := map[byte]byte{}
+	tMap := map[byte]byte{}
+
+	for i := 0; i < len(s); i++ {
+		if sMap[s[i]] != tMap[t[i]] {
+			return false
+		}
+		sMap[s[i]] = byte(i + 1)
+		tMap[t[i]] = byte(i + 1)
+	}
+
+	return true
+}
