@@ -79,3 +79,49 @@ func isIsomorphic2(s string, t string) bool {
 
 	return true
 }
+
+
+// * Solution 3 -- Single Map with Index -- Time: O(n), Space: O(n)
+func isIsomorphic3(s string, t string) bool {
+	if len(s) != len(t) {
+		return false
+	}
+
+	indexMap := make(map[byte]int)
+
+	for i := 0; i < len(s); i++ {
+		sKey := s[i]
+		tKey := t[i] + 128
+
+		if indexMap[sKey] != indexMap[tKey] {
+			return false
+		}
+
+		indexMap[sKey] = i + 1
+		indexMap[tKey] = i + 1
+	}
+
+	return true
+}
+
+// * Solution 4 -- Array Based -- Time: O(n), Space: O(1)
+func isIsomorphic4(s string, t string) bool {
+	if len(s) != len(t) {
+		return false
+	}
+
+	sArr := [256]int{}
+	tArr := [256]int{}
+
+	for i := 0; i < len(s); i++ {
+		if sArr[s[i]] != tArr[t[i]] {
+			return false
+		}
+
+		sArr[s[i]] = i + 1
+		tArr[t[i]] = i + 1
+	}
+
+	return true
+}
+
