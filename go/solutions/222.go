@@ -39,9 +39,43 @@ func Output222() any {
  */
 
 // * Solution 1 -- Recursion -- Time O(n) - Space O(n)
- func countNodes(root *TreeNode) int {
+func countNodes(root *TreeNode) int {
 	if root == nil {
-			return 0
+		return 0
 	}
 	return 1 + countNodes(root.Left) + countNodes(root.Right)
+}
+
+// * Solution 2 -- Binary Search -- Time O(log^2 n) - Space O(1)
+func countNodes2(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+
+	leftHeight := getLeftHeight(root)
+	rightHeight := getRightHeight(root)
+
+	if leftHeight == rightHeight {
+		return (1 << leftHeight) - 1
+	}
+
+	return 1 + countNodes2(root.Left) + countNodes2(root.Right)
+}
+
+func getLeftHeight(node *TreeNode) int {
+	height := 0
+	for node != nil {
+		height++
+		node = node.Left
+	}
+	return height
+}
+
+func getRightHeight(node *TreeNode) int {
+	height := 0
+	for node != nil {
+		height++
+		node = node.Right
+	}
+	return height
 }
