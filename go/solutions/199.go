@@ -66,3 +66,24 @@ func rightSideView(root *TreeNode) []int {
 	return result
 }
 
+// * Solution 2 -- DFS (Preorder) -- Time O(n) - Space O(h)
+func rightSideView2(root *TreeNode) []int {
+	result := []int{}
+
+	var dfs func(node *TreeNode, depth int, result *[]int)
+	dfs = func(node *TreeNode, depth int, result *[]int) {
+		if node == nil {
+			return
+		}
+
+		if depth == len(*result) {
+			*result = append(*result, node.Val)
+		}
+
+		dfs(node.Right, depth+1, result)
+		dfs(node.Left, depth+1, result)
+	}
+
+	dfs(root, 0, &result)
+	return result
+}
