@@ -73,4 +73,31 @@ func zigzagLevelOrder(root *TreeNode) [][]int {
 	return result
 }
 
+// * Solution 2 -- DFS (Preorder) -- Time O(n) - Space O(h)
+func zigzagLevelOrder2(root *TreeNode) [][]int {
+	result := [][]int{}
+
+	var dfs func(node *TreeNode, level int)
+	dfs = func(node *TreeNode, level int) {
+		if node == nil {
+			return
+		}
+
+		if level >= len(result) {
+			result = append(result, []int{})
+		}
+
+		if level%2 == 0 {
+			result[level] = append(result[level], node.Val)
+		} else {
+			result[level] = append([]int{node.Val}, result[level]...)
+		}
+
+		dfs(node.Left, level+1)
+		dfs(node.Right, level+1)
+	}
+
+	dfs(root, 0)
+	return result
+}
 
