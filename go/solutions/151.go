@@ -58,3 +58,39 @@ func reverseWords(s string) string {
 
 	return strings.Join(words, " ")
 }
+
+
+// * Solution 2 -- Two Pointers -- Time O(n) - Space O(n)
+func reverseWords2(s string) string {
+	bytes := []byte(strings.TrimSpace(s))
+	n := len(bytes)
+
+	reverse := func(start, end int) {
+		for start < end {
+			bytes[start], bytes[end] = bytes[end], bytes[start]
+			start++
+			end--
+		}
+	}
+	reverse(0, n-1)
+
+	start := 0
+	for i := 0; i < n; i++ {
+		if bytes[i] == ' ' {
+			reverse(start, i-1)
+			start = i + 1
+		} else if i == n-1 {
+			reverse(start, i)
+		}
+	}
+
+	j := 0
+	for i := 0; i < n; i++ {
+		if !(bytes[i] == ' ' && (i == 0 || bytes[i-1] == ' ')) {
+			bytes[j] = bytes[i]
+			j++
+		}
+	}
+
+	return string(bytes[:j])
+}
