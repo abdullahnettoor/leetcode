@@ -59,7 +59,6 @@ func reverseWords(s string) string {
 	return strings.Join(words, " ")
 }
 
-
 // * Solution 2 -- Two Pointers -- Time O(n) - Space O(n)
 func reverseWords2(s string) string {
 	bytes := []byte(strings.TrimSpace(s))
@@ -93,4 +92,15 @@ func reverseWords2(s string) string {
 	}
 
 	return string(bytes[:j])
+}
+
+// * Solution 3 -- Stack Based -- Time O(n) - Space O(n)
+func reverseWords3(s string) string {
+	words := strings.Fields(s)
+
+	for i := 0; i < len(words)/2; i++ {
+		words[i], words[len(words)-1-i] = words[len(words)-1-i], words[i]
+	}
+
+	return strings.Join(words, " ")
 }
