@@ -64,3 +64,28 @@ func minDiffInBST(root *TreeNode) int {
 
 	return minimum
 }
+
+// * Solution 2 -- DFS (Inorder) with prev pointer -- Time O(n) - Space O(h)
+func minDiffInBST2(root *TreeNode) int {
+	minimum := math.MaxInt32
+	var prev *TreeNode
+
+	var dfs func(node *TreeNode)
+	dfs = func(node *TreeNode) {
+		if node == nil {
+			return
+		}
+
+		dfs(node.Left)
+
+		if prev != nil {
+			minimum = min(minimum, node.Val-prev.Val)
+		}
+		prev = node
+
+		dfs(node.Right)
+	}
+
+	dfs(root)
+	return minimum
+}
