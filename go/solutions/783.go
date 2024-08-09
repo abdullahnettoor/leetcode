@@ -2,6 +2,7 @@ package solutions
 
 import (
 	"math"
+	"sort"
 )
 
 /* Question ********************************
@@ -87,5 +88,37 @@ func minDiffInBST2(root *TreeNode) int {
 	}
 
 	dfs(root)
+	return minimum
+}
+
+// * Solution 3 -- BFS (Level Order) -- Time O(n) - Space O(w)
+func minDiffInBST3(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+
+	minimum := math.MaxInt32
+	values := []int{}
+	queue := []*TreeNode{root}
+
+	for len(queue) > 0 {
+		node := queue[0]
+		queue = queue[1:]
+
+		values = append(values, node.Val)
+
+		if node.Left != nil {
+			queue = append(queue, node.Left)
+		}
+		if node.Right != nil {
+			queue = append(queue, node.Right)
+		}
+	}
+
+	sort.Ints(values)
+	for i := 1; i < len(values); i++ {
+		minimum = min(minimum, values[i]-values[i-1])
+	}
+
 	return minimum
 }
