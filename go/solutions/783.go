@@ -122,3 +122,40 @@ func minDiffInBST3(root *TreeNode) int {
 
 	return minimum
 }
+
+// * Solution 4 -- Morris Traversal -- Time O(n) - Space O(1)
+func minDiffInBST4(root *TreeNode) int {
+	minimum := math.MaxInt32
+	var prev *TreeNode
+	current := root
+
+	for current != nil {
+		if current.Left == nil {
+			if prev != nil {
+				minimum = min(minimum, current.Val-prev.Val)
+			}
+			prev = current
+			current = current.Right
+		} else {
+			// Find the inorder predecessor
+			predecessor := current.Left
+			for predecessor.Right != nil && predecessor.Right != current {
+				predecessor = predecessor.Right
+			}
+
+			if predecessor.Right == nil {
+				predecessor.Right = current
+				current = current.Left
+			} else {
+				predecessor.Right = nil
+				if prev != nil {
+					minimum = min(minimum, current.Val-prev.Val)
+				}
+				prev = current
+				current = current.Right
+			}
+		}
+	}
+
+	return minimum
+}
