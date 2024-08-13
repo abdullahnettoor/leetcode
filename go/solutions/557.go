@@ -13,7 +13,6 @@ Output: "s'teL ekat edoCteeL tsetnoc"
 Example 2:
 Input: s = "Mr Ding"
 Output: "rM gniD"
- 
 
 Constraints:
 1 <= s.length <= 5 * 104
@@ -28,7 +27,7 @@ func Output557() any {
 }
 
 // * Solution 1
-func reverseWords(s string) string {
+func reverseWordsIII(s string) string {
 	words := strings.Split(s, " ")
 	for i := range words {
 		var tmp string
