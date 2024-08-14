@@ -52,3 +52,20 @@ func removeStars(s string) string {
 	return string(res)
 }
 
+
+// * Solution 2 -- Pointers -- Time: O(n) - Space: O(n)
+func removeStars2(s string) string {
+	res := make([]rune, len(s))
+	pos := 0
+
+	for _, r := range s {
+		if r == '*' {
+			pos--
+		} else {
+			res[pos] = r
+			pos++
+		}
+	}
+
+	return string(res[:pos])
+}
