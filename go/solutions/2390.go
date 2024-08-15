@@ -69,3 +69,20 @@ func removeStars2(s string) string {
 
 	return string(res[:pos])
 }
+
+// * Solution 3 -- Update In Place -- Time: O(n) - Space: O(1)
+func removeStars3(s string) string {
+	runes := []rune(s)
+	pos := 0
+
+	for _, r := range runes {
+		if r == '*' {
+			pos--
+		} else {
+			runes[pos] = r
+			pos++
+		}
+	}
+
+	return string(runes[:pos])
+}
