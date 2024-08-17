@@ -39,4 +39,14 @@ func getConcatenation(nums []int) []int {
 	return append(nums, nums...)
 }
 
+// * Solution 2 -- Manual Copying -- Time: O(n) - Space O(n)
+func getConcatenation2(nums []int) []int {
+	n := len(nums)
+	result := make([]int, 2*n)
 
+	for i := 0; i < n; i++ {
+			result[i], result[i+n] = nums[i], nums[i]
+	}
+
+	return result
+}
