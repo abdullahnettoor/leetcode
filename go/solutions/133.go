@@ -55,7 +55,7 @@ func Output133() any {
  * }
  */
 
-// * Solution -- DFS -- Time O(V+E) - Space O(V)
+// * Solution -- DFS - Recursion -- Time O(V+E) - Space O(V)
 // where V is Vertex and E is Edges
 func cloneGraph(node *Node) *Node {
 
@@ -85,7 +85,7 @@ func cloneGraph(node *Node) *Node {
 
 }
 
-// * Solution -- BFS - Iterative -- Time O(V+E) - Space O(V)
+// * Solution -- BFS - Iterative - Queue -- Time O(V+E) - Space O(V)
 // where V is Vertex and E is Edges
 func cloneGraph2(node *Node) *Node {
 	if node == nil {
@@ -112,4 +112,32 @@ func cloneGraph2(node *Node) *Node {
 
 	return visited[node]
 }
+
+// * Solution -- DFS - Iterative - Stack -- Time O(V+E) - Space O(V)
+// where V is Vertex and E is Edges
+func cloneGrap3(node *Node) *Node {
+	if node == nil {
+			return nil
+	}
+
+	visited := make(map[*Node]*Node)
+	stack := []*Node{node}
+	visited[node] = &Node{Val: node.Val}
+
+	for len(stack) > 0 {
+			curr := stack[len(stack)-1]
+			stack = stack[:len(stack)-1]
+
+			for _, neighbor := range curr.Neighbors {
+					if _, found := visited[neighbor]; !found {
+							visited[neighbor] = &Node{Val: neighbor.Val}
+							stack = append(stack, neighbor)
+					}
+					visited[curr].Neighbors = append(visited[curr].Neighbors, visited[neighbor])
+			}
+	}
+
+	return visited[node]
+}
+
 
