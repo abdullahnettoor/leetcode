@@ -62,3 +62,32 @@ func findDifference(nums1 []int, nums2 []int) [][]int {
 
 	return [][]int{diff1, diff2}
 }
+
+// * Solution 2 -- Using Set -- Time O(m+n) - Space O(m+n)
+func findDifference2(nums1 []int, nums2 []int) [][]int {
+	set1 := map[int]bool{}
+	set2 := map[int]bool{}
+
+	for _, n := range nums1 {
+			set1[n] = true
+	}
+	for _, n := range nums2 {
+			set2[n] = true
+	}
+
+	diff1 := []int{}
+	diff2 := []int{}
+
+	for n := range set1 {
+			if !set2[n] {
+					diff1 = append(diff1, n)
+			}
+	}
+	for n := range set2 {
+			if !set1[n] {
+					diff2 = append(diff2, n)
+			}
+	}
+
+	return [][]int{diff1, diff2}
+}
