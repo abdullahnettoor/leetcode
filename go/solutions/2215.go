@@ -1,5 +1,7 @@
 package solutions
 
+import "sort"
+
 /* Question **********************************
 ? 2215. Find the Difference of Two Arrays
 Given two 0-indexed integer arrays nums1 and nums2, return a list answer of size 2 where:
@@ -69,24 +71,52 @@ func findDifference2(nums1 []int, nums2 []int) [][]int {
 	set2 := map[int]bool{}
 
 	for _, n := range nums1 {
-			set1[n] = true
+		set1[n] = true
 	}
 	for _, n := range nums2 {
-			set2[n] = true
+		set2[n] = true
 	}
 
 	diff1 := []int{}
 	diff2 := []int{}
 
 	for n := range set1 {
-			if !set2[n] {
-					diff1 = append(diff1, n)
-			}
+		if !set2[n] {
+			diff1 = append(diff1, n)
+		}
 	}
 	for n := range set2 {
-			if !set1[n] {
-					diff2 = append(diff2, n)
+		if !set1[n] {
+			diff2 = append(diff2, n)
+		}
+	}
+
+	return [][]int{diff1, diff2}
+}
+
+// * Solution 3 -- Sorting + Two Pointers -- Time O(m+n) - Space O(m+n)
+func findDifference3(nums1 []int, nums2 []int) [][]int {
+	sort.Ints(nums1)
+	sort.Ints(nums2)
+
+	i, j := 0, 0
+	diff1, diff2 := []int{}, []int{}
+
+	for i < len(nums1) || j < len(nums2) {
+		if i < len(nums1) && (j == len(nums2) || nums1[i] < nums2[j]) {
+			if len(diff1) == 0 || nums1[i] != diff1[len(diff1)-1] {
+				diff1 = append(diff1, nums1[i])
 			}
+			i++
+		} else if j < len(nums2) && (i == len(nums1) || nums2[j] < nums1[i]) {
+			if len(diff2) == 0 || nums2[j] != diff2[len(diff2)-1] {
+				diff2 = append(diff2, nums2[j])
+			}
+			j++
+		} else {
+			i++
+			j++
+		}
 	}
 
 	return [][]int{diff1, diff2}
