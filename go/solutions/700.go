@@ -43,9 +43,23 @@ func searchBST(root *TreeNode, val int) *TreeNode {
 
 	return nil
 }
+func searchBST2(root *TreeNode, val int) *TreeNode {
+	for root != nil {
+		if root.Val == val {
+			return root
+		}
+		if root.Val > val {
+			root = root.Left
+		} else {
+			root = root.Right
+		}
+	}
+	return nil
+}
+
 
 // * Solution -- Recursion -- Time O(logn) - Space O(logn)
-func searchBST2(root *TreeNode, val int) *TreeNode {
+func searchBST3(root *TreeNode, val int) *TreeNode {
 	if root == nil || root.Val == val {
 		return root
 	}
